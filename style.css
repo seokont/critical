@@ -209,34 +209,41 @@ input {
   background: rgba(11, 114, 255, 0.1);
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
 .header-phone {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   min-height: 42px;
-  padding: 0 14px;
-  color: #071f49;
-  background: rgba(11, 114, 255, 0.08);
-  border: 1px solid rgba(11, 114, 255, 0.16);
+  padding: 0 16px;
+  color: #061a3c;
+  background: var(--yellow);
+  border: 1px solid rgba(6, 45, 102, 0.12);
   border-radius: 6px;
   font-size: 0.94rem;
   font-weight: 800;
+  box-shadow: 0 14px 30px rgba(255, 191, 31, 0.25);
   white-space: nowrap;
-  transition: min-height 220ms ease, padding 220ms ease, font-size 220ms ease, color 160ms ease, background 160ms ease, border-color 160ms ease;
+  transition: min-height 220ms ease, padding 220ms ease, font-size 220ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .header-phone:hover,
 .header-phone:focus-visible {
-  color: var(--blue-dark);
-  background: rgba(11, 114, 255, 0.14);
-  border-color: rgba(11, 114, 255, 0.28);
+  background: #ffd052;
+  box-shadow: 0 16px 34px rgba(255, 191, 31, 0.28);
 }
 
 .header-phone .icon {
   width: 18px;
   height: 18px;
-  color: var(--blue);
   transition: width 220ms ease, height 220ms ease;
 }
 
@@ -244,6 +251,7 @@ input {
   min-height: 36px;
   padding: 0 12px;
   font-size: 0.86rem;
+  box-shadow: 0 10px 22px rgba(255, 191, 31, 0.18);
 }
 
 .site-header.is-scrolled .header-phone .icon {
@@ -1926,6 +1934,10 @@ section[id] {
     font-size: 0.86rem;
   }
 
+  .header-phone-label {
+    display: none;
+  }
+
   .hero-layout {
     grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
     gap: 28px;
@@ -2087,8 +2099,7 @@ section[id] {
   }
 
   .header-cta {
-    max-width: 136px;
-    text-align: center;
+    display: none;
   }
 
   .header-phone {

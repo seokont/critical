@@ -111,19 +111,22 @@
     <a href="#contacts">Контакти</a>
   </nav>
 
-  <a class="header-phone" href="tel:+380973055477">
-    <svg class="icon" aria-hidden="true">
-      <use href="#icon-phone"></use>
-    </svg>
-    +380 97 305 54 77
-  </a>
+  <div class="header-actions" aria-label="Швидкі контакти">
+    <a class="header-phone" href="tel:+380973055477">
+      <svg class="icon" aria-hidden="true">
+        <use href="#icon-phone"></use>
+      </svg>
+      <span class="header-phone-label">Подзвонити</span>
+      <span>+380 97 305 54 77</span>
+    </a>
 
-  <a class="header-cta" href="#lead">
-    <svg class="icon" aria-hidden="true">
-      <use href="#icon-file-search"></use>
-    </svg>
-    Оцінити шанси
-  </a>
+    <a class="header-cta" href="#lead">
+      <svg class="icon" aria-hidden="true">
+        <use href="#icon-file-search"></use>
+      </svg>
+      Оцінити шанси
+    </a>
+  </div>
 </header>
 
 <main id="top">
@@ -962,7 +965,7 @@
   </div>
 
   <address id="contacts" class="footer-contacts" aria-label="Контакти">
-    <span class="footer-contact">
+    <a class="footer-contact" href="tel:+380973055477">
       <svg class="footer-icon" aria-hidden="true">
         <use href="#icon-phone"></use>
       </svg>
@@ -970,7 +973,7 @@
         <strong>Телефон</strong>
         <small>+380 97 305 54 77</small>
       </span>
-    </span>
+    </a>
     <!-- <span class="footer-contact">
           <svg class="footer-icon" aria-hidden="true">
             <use href="#icon-mail"></use>

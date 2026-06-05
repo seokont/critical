@@ -9,7 +9,7 @@
   const formStatus = document.querySelector("[data-form-status]");
   const feedbackForm = document.querySelector("[data-feedback-form]");
   const feedbackStatus = document.querySelector("[data-feedback-status]");
-  const backButton = document.querySelector("[data-back-button]");
+  const scrollTopButton = document.querySelector("[data-scroll-top]");
   const canvas = document.getElementById("continuityScene");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TELEGRAM_ENDPOINT = window.TELEGRAM_ENDPOINT || "/api/telegram";
@@ -150,18 +150,17 @@
     });
   }
 
-  function setupBackButton() {
-    if (!backButton) {
+  function setupScrollTopButton() {
+    if (!scrollTopButton) {
       return;
     }
 
-    backButton.addEventListener("click", (event) => {
-      if (window.history.length <= 1) {
-        return;
-      }
-
+    scrollTopButton.addEventListener("click", (event) => {
       event.preventDefault();
-      window.history.back();
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
     });
   }
 
@@ -645,7 +644,7 @@
   setupBlockAnimations();
   setupReveal();
   setupTabs();
-  setupBackButton();
+  setupScrollTopButton();
   setupQuickForm();
   setupLeadForm();
   setupFeedbackForm();

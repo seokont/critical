@@ -1829,6 +1829,82 @@ section[id] {
   stroke-linejoin: round;
 }
 
+.thank-you-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vw, 80px);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 191, 31, 0.16), transparent 32%),
+    linear-gradient(135deg, #f8fbff 0%, #e8fffb 52%, #ffffff 100%);
+}
+
+.thank-you-card {
+  width: min(100%, 720px);
+  padding: clamp(26px, 5vw, 48px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 114, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.thank-you-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  color: #071f49;
+  background: var(--yellow);
+  border-radius: 8px;
+  box-shadow: 0 20px 42px rgba(255, 191, 31, 0.28);
+}
+
+.thank-you-mark svg {
+  width: 34px;
+  height: 34px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.thank-you-card h1 {
+  max-width: 620px;
+  margin: 10px auto 0;
+  color: #071f49;
+  font-size: clamp(2.1rem, 5vw, 3.35rem);
+  line-height: 1.04;
+}
+
+.thank-you-card p:not(.section-kicker) {
+  max-width: 540px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.thank-you-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.thank-you-actions .btn {
+  min-width: 156px;
+}
+
+.thank-you-actions .btn-ghost {
+  color: #071f49;
+  border-color: rgba(11, 114, 255, 0.2);
+}
+
 .reveal {
   opacity: 1;
   transform: translateY(0);

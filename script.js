@@ -13,6 +13,7 @@
   const canvas = document.getElementById("continuityScene");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TELEGRAM_ENDPOINT = window.TELEGRAM_ENDPOINT || "/api/telegram";
+  const THANK_YOU_URL = "/thank-you";
 
   async function sendLeadToTelegram(payload) {
     const response = await fetch(TELEGRAM_ENDPOINT, {
@@ -39,6 +40,10 @@
     }
 
     return result;
+  }
+
+  function redirectToThankYou() {
+    window.location.assign(THANK_YOU_URL);
   }
 
   function handleHeader() {
@@ -234,6 +239,7 @@
         quickStatus.textContent = "Дякуємо. Контакт відправлено в Telegram.";
         quickStatus.className = "quick-form-status is-success";
         quickForm.reset();
+        redirectToThankYou();
       } catch (error) {
         quickStatus.textContent = "Не вдалося відправити в Telegram. Перевірте налаштування /api/telegram.";
         quickStatus.className = "quick-form-status is-error";
@@ -341,6 +347,7 @@
         formStatus.textContent = "Дякуємо. Заявку відправлено в Telegram.";
         formStatus.className = "form-status is-success";
         leadForm.reset();
+        redirectToThankYou();
       } catch (error) {
         formStatus.textContent = "Не вдалося відправити в Telegram. Перевірте налаштування /api/telegram.";
         formStatus.className = "form-status is-error";
@@ -425,6 +432,7 @@
         feedbackStatus.textContent = "Дякуємо. Повідомлення відправлено в Telegram.";
         feedbackStatus.className = "form-status is-success";
         feedbackForm.reset();
+        redirectToThankYou();
       } catch (error) {
         feedbackStatus.textContent = "Не вдалося відправити в Telegram. Перевірте налаштування /api/telegram.";
         feedbackStatus.className = "form-status is-error";

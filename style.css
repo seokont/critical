@@ -209,6 +209,48 @@ input {
   background: rgba(11, 114, 255, 0.1);
 }
 
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  color: #071f49;
+  background: rgba(11, 114, 255, 0.08);
+  border: 1px solid rgba(11, 114, 255, 0.16);
+  border-radius: 6px;
+  font-size: 0.94rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: min-height 220ms ease, padding 220ms ease, font-size 220ms ease, color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.header-phone:hover,
+.header-phone:focus-visible {
+  color: var(--blue-dark);
+  background: rgba(11, 114, 255, 0.14);
+  border-color: rgba(11, 114, 255, 0.28);
+}
+
+.header-phone .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+  transition: width 220ms ease, height 220ms ease;
+}
+
+.site-header.is-scrolled .header-phone {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 0.86rem;
+}
+
+.site-header.is-scrolled .header-phone .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .header-cta {
   display: inline-flex;
   align-items: center;
@@ -1860,8 +1902,28 @@ section[id] {
 }
 
 @media (max-width: 1080px) {
+  .site-header {
+    gap: 12px;
+  }
+
   .hero h1 {
     font-size: 3.8rem;
+  }
+
+  .main-nav {
+    gap: 4px;
+  }
+
+  .main-nav a {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 0.88rem;
+  }
+
+  .header-phone {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 0.86rem;
   }
 
   .hero-layout {
@@ -1925,7 +1987,18 @@ section[id] {
     font-size: 0.86rem;
   }
 
+  .header-phone {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.86rem;
+  }
+
   .site-header.is-scrolled .header-cta {
+    min-height: 36px;
+    font-size: 0.8rem;
+  }
+
+  .site-header.is-scrolled .header-phone {
     min-height: 36px;
     font-size: 0.8rem;
   }
@@ -2018,7 +2091,16 @@ section[id] {
     text-align: center;
   }
 
+  .header-phone {
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+
   .header-cta .icon {
+    display: none;
+  }
+
+  .header-phone .icon {
     display: none;
   }
 

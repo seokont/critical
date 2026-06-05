@@ -9,6 +9,7 @@
   const formStatus = document.querySelector("[data-form-status]");
   const feedbackForm = document.querySelector("[data-feedback-form]");
   const feedbackStatus = document.querySelector("[data-feedback-status]");
+  const backButton = document.querySelector("[data-back-button]");
   const canvas = document.getElementById("continuityScene");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TELEGRAM_ENDPOINT = window.TELEGRAM_ENDPOINT || "/api/telegram";
@@ -146,6 +147,21 @@
           panel.hidden = !isActive;
         });
       });
+    });
+  }
+
+  function setupBackButton() {
+    if (!backButton) {
+      return;
+    }
+
+    backButton.addEventListener("click", (event) => {
+      if (window.history.length <= 1) {
+        return;
+      }
+
+      event.preventDefault();
+      window.history.back();
     });
   }
 
@@ -629,6 +645,7 @@
   setupBlockAnimations();
   setupReveal();
   setupTabs();
+  setupBackButton();
   setupQuickForm();
   setupLeadForm();
   setupFeedbackForm();

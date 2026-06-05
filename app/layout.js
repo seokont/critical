@@ -46,7 +46,13 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="uk">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          src="https://aisw.online/widget.js"
+          data-key="sk_7ca0fc9b62a948808eb3249ed11b3e50"
+        ></script>
+      </body>
     </html>
   );
 }

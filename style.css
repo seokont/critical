@@ -1522,6 +1522,69 @@ section[id] {
   color: #087443;
 }
 
+.feedback-section {
+  padding: 86px clamp(18px, 5vw, 80px);
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(248, 251, 255, 0.98), rgba(232, 255, 251, 0.96)),
+    #f8fbff;
+  border-top: 1px solid rgba(11, 114, 255, 0.08);
+}
+
+.feedback-content {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 0.88fr);
+  gap: clamp(26px, 5vw, 56px);
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.feedback-copy {
+  max-width: 570px;
+}
+
+.feedback-copy h2 {
+  margin: 10px 0 0;
+  color: #071f49;
+  font-size: 2.8rem;
+  line-height: 1.04;
+}
+
+.feedback-copy p:not(.section-kicker) {
+  max-width: 520px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.feedback-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.feedback-points span {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 12px;
+  color: #17233a;
+  background: #ffffff;
+  border: 1px solid rgba(11, 114, 255, 0.12);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  box-shadow: 0 14px 30px rgba(10, 37, 88, 0.06);
+}
+
+.feedback-form {
+  width: 100%;
+  max-width: 520px;
+  justify-self: end;
+}
+
 .faq-list {
   display: grid;
   gap: 12px;
@@ -1958,9 +2021,14 @@ section[id] {
 
   .split-layout,
   .lead-content,
+  .feedback-content,
   .impact-band,
   .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .feedback-form {
+    justify-self: stretch;
   }
 
   .service-list li {
@@ -2070,7 +2138,8 @@ section[id] {
   .section-head h2,
   .split-layout h2,
   .impact-band h2,
-  .lead-content h2 {
+  .lead-content h2,
+  .feedback-copy h2 {
     font-size: 2.2rem;
   }
 
@@ -2166,6 +2235,15 @@ section[id] {
   .lead-section {
     padding-top: 70px;
     padding-bottom: 70px;
+  }
+
+  .feedback-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .feedback-points {
+    grid-template-columns: 1fr;
   }
 
   .lead-form {

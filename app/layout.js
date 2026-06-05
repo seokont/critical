@@ -11,6 +11,9 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "oY47iZQYTmKGzGdYYmJL7Tx6sK_0rni-dfoSLxV6ipQ",
+  },
   alternates: {
     canonical: "/",
     languages: {

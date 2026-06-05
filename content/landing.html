@@ -112,12 +112,12 @@
   </nav>
 
   <div class="header-actions" aria-label="Швидкі контакти">
-    <a class="header-phone" href="tel:+380973055477">
+    <a class="header-phone" href="tel:+380679177889">
       <svg class="icon" aria-hidden="true">
         <use href="#icon-phone"></use>
       </svg>
       <span class="header-phone-label">Подзвонити</span>
-      <span>+380 97 305 54 77</span>
+      <span>+380 67 917 78 89</span>
     </a>
 
     <a class="header-cta" href="#lead">
@@ -948,6 +948,78 @@
           подання, повноти документів і слабких місць, які потрібно підсилити.
         </p>
       </details>
+    </div>
+  </section>
+
+  <section id="feedback" class="feedback-section">
+    <div class="feedback-content">
+      <div class="feedback-copy reveal">
+        <p class="section-kicker">Зворотний зв'язок</p>
+        <h2>Залиште питання, і ми повернемося з відповіддю</h2>
+        <p>
+          Опишіть коротко, що потрібно уточнити щодо статусу критично важливого
+          підприємства, строків або документів.
+        </p>
+        <div class="feedback-points" aria-label="Теми для звернення">
+          <span>Первинна консультація</span>
+          <span>Перевірка документів</span>
+          <span>Термінове питання</span>
+        </div>
+      </div>
+
+      <form
+        class="lead-form feedback-form reveal"
+        data-feedback-form
+        novalidate
+      >
+        <div class="form-row">
+          <label for="feedbackName">Ім'я</label>
+          <input
+            id="feedbackName"
+            name="name"
+            type="text"
+            autocomplete="name"
+            placeholder="Як до вас звертатися"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <label for="feedbackContact">Телефон або email</label>
+          <input
+            id="feedbackContact"
+            name="contact"
+            type="text"
+            autocomplete="email"
+            placeholder="+380 або email"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <label for="feedbackMessage">Повідомлення</label>
+          <textarea
+            id="feedbackMessage"
+            name="message"
+            rows="4"
+            placeholder="Напишіть питання або коротко опишіть ситуацію"
+            required
+          ></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-send"></use>
+          </svg>
+          Надіслати повідомлення
+        </button>
+        <p class="form-note">
+          Відповімо у зручному для вас каналі після первинного перегляду запиту.
+        </p>
+        <p
+          class="form-status"
+          data-feedback-status
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
     </div>
   </section>
 </main>

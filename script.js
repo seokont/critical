@@ -7,6 +7,8 @@
   const quickStatus = document.querySelector("[data-quick-status]");
   const leadForm = document.querySelector("[data-lead-form]");
   const formStatus = document.querySelector("[data-form-status]");
+  const feedbackForm = document.querySelector("[data-feedback-form]");
+  const feedbackStatus = document.querySelector("[data-feedback-status]");
   const canvas = document.getElementById("continuityScene");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TELEGRAM_ENDPOINT = window.TELEGRAM_ENDPOINT || "/api/telegram";
@@ -62,6 +64,7 @@
       ".tabs",
       ".impact-band",
       ".lead-content > *",
+      ".feedback-content > *",
       ".faq-item",
       ".footer-brand > *",
       ".footer-contact"
@@ -332,6 +335,90 @@
     });
   }
 
+  function setupFeedbackForm() {
+    if (!feedbackForm || !feedbackStatus) {
+      return;
+    }
+
+    const nameInput = feedbackForm.querySelector("#feedbackName");
+    const contactInput = feedbackForm.querySelector("#feedbackContact");
+    const messageInput = feedbackForm.querySelector("#feedbackMessage");
+    const formControls = feedbackForm.querySelectorAll("input, textarea");
+
+    function clearFeedbackState(control) {
+      control.classList.remove("is-invalid");
+      feedbackStatus.textContent = "";
+      feedbackStatus.className = "form-status";
+    }
+
+    formControls.forEach((control) => {
+      control.addEventListener("input", () => clearFeedbackState(control));
+    });
+
+    feedbackForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const name = nameInput.value.trim();
+      const contact = contactInput.value.trim();
+      const message = messageInput.value.trim();
+      const isNameValid = name.length >= 2;
+      const isContactValid = contact.length >= 5;
+      const isMessageValid = message.length >= 4;
+
+      nameInput.classList.toggle("is-invalid", !isNameValid);
+      contactInput.classList.toggle("is-invalid", !isContactValid);
+      messageInput.classList.toggle("is-invalid", !isMessageValid);
+
+      if (!isNameValid || !isContactValid || !isMessageValid) {
+        feedbackStatus.textContent = "Вкажіть ім'я, контакт і коротке повідомлення.";
+        feedbackStatus.className = "form-status is-error";
+        return;
+      }
+
+      const submitButton = feedbackForm.querySelector("button[type='submit']");
+      const feedbackData = {
+        name,
+        contact,
+        message,
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        localStorage.setItem(
+          "critical-status-feedback",
+          JSON.stringify(feedbackData)
+        );
+      } catch (error) {
+        // Private browsing can block storage; Telegram delivery is independent.
+      }
+
+      submitButton.disabled = true;
+      feedbackStatus.textContent = "Відправляємо повідомлення в Telegram...";
+      feedbackStatus.className = "form-status";
+
+      try {
+        await sendLeadToTelegram({
+          type: "feedback",
+          title: "Зворотний зв'язок перед футером",
+          fields: {
+            "Ім'я": name,
+            "Телефон або email": contact,
+            "Повідомлення": message
+          }
+        });
+
+        feedbackStatus.textContent = "Дякуємо. Повідомлення відправлено в Telegram.";
+        feedbackStatus.className = "form-status is-success";
+        feedbackForm.reset();
+      } catch (error) {
+        feedbackStatus.textContent = "Не вдалося відправити в Telegram. Перевірте налаштування /api/telegram.";
+        feedbackStatus.className = "form-status is-error";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  }
+
   function setupCanvasScene() {
     if (!canvas) {
       return;
@@ -544,5 +631,6 @@
   setupTabs();
   setupQuickForm();
   setupLeadForm();
+  setupFeedbackForm();
   setupCanvasScene();
 })();

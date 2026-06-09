@@ -2,7 +2,9 @@ import "../style.css";
 import Script from "next/script";
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title:
     "Статус критично важливого підприємства | Супровід для бронювання працівників",
   description:
@@ -61,7 +63,10 @@ export default function RootLayout({ children }) {
           gtag('config', 'AW-18217009551');
         `}</Script>
         {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="beforeInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <Script
+          id="gtm-script"
+          strategy="beforeInteractive"
+        >{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -78,10 +83,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></iframe>
         </noscript>
         {children}
-        <script
+        {/*  <script
           src="https://aisw.online/widget.js"
           data-key="sk_7ca0fc9b62a948808eb3249ed11b3e50"
-        ></script>
+        ></script>*/}
       </body>
     </html>
   );

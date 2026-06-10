@@ -10,10 +10,13 @@
   const feedbackForm = document.querySelector("[data-feedback-form]");
   const feedbackStatus = document.querySelector("[data-feedback-status]");
   const scrollTopButton = document.querySelector("[data-scroll-top]");
+  const visitCounter = document.querySelector("[data-visit-counter]");
   const canvas = document.getElementById("continuityScene");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const TELEGRAM_ENDPOINT = window.TELEGRAM_ENDPOINT || "/api/telegram";
+  const VISITS_ENDPOINT = window.VISITS_ENDPOINT || "/api/visits";
   const THANK_YOU_URL = "/thank-you";
+  const VISITOR_ID_KEY = "critical-status-visitor-id";
 
   async function sendLeadToTelegram(payload) {
     const response = await fetch(TELEGRAM_ENDPOINT, {
@@ -167,6 +170,67 @@
         behavior: reduceMotion ? "auto" : "smooth"
       });
     });
+  }
+
+  function getVisitorId() {
+    try {
+      const storedId = localStorage.getItem(VISITOR_ID_KEY);
+
+      if (storedId) {
+        return storedId;
+      }
+
+      const visitorId =
+        window.crypto && typeof window.crypto.randomUUID === "function"
+          ? window.crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+      localStorage.setItem(VISITOR_ID_KEY, visitorId);
+
+      return visitorId;
+    } catch (error) {
+      return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+  }
+
+  function setVisitCounterValue(selector, value) {
+    const item = visitCounter.querySelector(selector);
+
+    if (!item) {
+      return;
+    }
+
+    item.textContent = new Intl.NumberFormat("uk-UA").format(Number(value) || 0);
+  }
+
+  async function setupVisitCounter() {
+    if (!visitCounter) {
+      return;
+    }
+
+    try {
+      const response = await fetch(VISITS_ENDPOINT, {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ visitorId: getVisitorId() })
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.ok !== true) {
+        throw new Error(result.error || "Visits endpoint error");
+      }
+
+      setVisitCounterValue("[data-visit-daily]", result.daily);
+      setVisitCounterValue("[data-visit-weekly]", result.weekly);
+      visitCounter.setAttribute("aria-busy", "false");
+      visitCounter.classList.remove("is-unavailable");
+    } catch (error) {
+      visitCounter.setAttribute("aria-busy", "false");
+      visitCounter.classList.add("is-unavailable");
+    }
   }
 
   function setupQuickForm() {
@@ -653,6 +717,7 @@
   setupReveal();
   setupTabs();
   setupScrollTopButton();
+  setupVisitCounter();
   setupQuickForm();
   setupLeadForm();
   setupFeedbackForm();

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Check } from "lucide-react";
 
 export const metadata = {
   title: "Дякуємо за заявку | УкрГосКапітал",
@@ -15,9 +16,7 @@ export default function ThankYouPage() {
     <main className="thank-you-page">
       <section className="thank-you-card" aria-labelledby="thank-you-title">
         <span className="thank-you-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d="M20 6 9 17l-5-5"></path>
-          </svg>
+          <Check focusable="false" aria-hidden="true" />
         </span>
         <p className="section-kicker">Заявку відправлено</p>
         <h1 id="thank-you-title">Дякуємо. Ми отримали вашу заявку.</h1>

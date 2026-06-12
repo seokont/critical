@@ -18,6 +18,30 @@
   const THANK_YOU_URL = "/thank-you";
   const VISITOR_ID_KEY = "critical-status-visitor-id";
 
+  function setupLucideIcons() {
+    const renderIcons = () => {
+      if (!window.lucide || typeof window.lucide.createIcons !== "function") {
+        return false;
+      }
+
+      window.lucide.createIcons();
+      return true;
+    };
+
+    if (renderIcons()) {
+      return;
+    }
+
+    let attempts = 0;
+    const iconTimer = window.setInterval(() => {
+      attempts += 1;
+
+      if (renderIcons() || attempts >= 30) {
+        window.clearInterval(iconTimer);
+      }
+    }, 50);
+  }
+
   async function sendLeadToTelegram(payload) {
     const response = await fetch(TELEGRAM_ENDPOINT, {
       method: "POST",
@@ -712,6 +736,7 @@
   }
 
   window.addEventListener("scroll", handleHeader, { passive: true });
+  setupLucideIcons();
   handleHeader();
   setupBlockAnimations();
   setupReveal();

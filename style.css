@@ -43,11 +43,10 @@ input {
   font: inherit;
 }
 
-.icon-sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+[data-lucide] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
 }
 
 .icon,

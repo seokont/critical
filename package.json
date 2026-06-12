@@ -8,6 +8,8 @@
     "start": "next start --hostname 127.0.0.1 --port 3003"
   },
   "dependencies": {
+    "lucide": "^1.18.0",
+    "lucide-react": "^1.18.0",
     "next": "16.2.7",
     "react": "19.2.7",
     "react-dom": "19.2.7"

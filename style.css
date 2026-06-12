@@ -1674,8 +1674,11 @@ section[id] {
 
 .site-footer {
   display: grid;
-  grid-template-columns: minmax(240px, 0.8fr) minmax(460px, 1.2fr);
-  gap: 28px;
+  grid-template-columns:
+    minmax(220px, 0.78fr)
+    minmax(230px, 0.52fr)
+    minmax(430px, 1.2fr);
+  gap: 24px;
   align-items: start;
   padding: 34px clamp(18px, 5vw, 80px);
   color: rgba(255, 255, 255, 0.78);
@@ -1723,13 +1726,17 @@ section[id] {
   font-size: 0.82rem;
 }
 
+.footer-middle {
+  min-width: 0;
+}
+
 .footer-visits {
   display: grid;
-  grid-template-columns: minmax(104px, 1fr) repeat(2, minmax(78px, auto));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 10px;
-  max-width: 420px;
-  margin-top: 16px;
+  max-width: 340px;
+  margin: 0 auto;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -1737,6 +1744,7 @@ section[id] {
 }
 
 .footer-visits-label {
+  grid-column: 1 / -1;
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.78rem;
   font-weight: 800;
@@ -1776,7 +1784,7 @@ section[id] {
 
 .footer-contacts {
   display: grid;
-  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin: 0;
   font-style: normal;
